@@ -1,0 +1,6 @@
+Django
+djangorestframework
+django-cors-headers
+djangorestframework_simplejwt
+python-dotenv
+google-api-python-client
