@@ -1,4 +1,4 @@
-"""This file is  just  Generate .env file for setup"""
+"""This script generates a .env file for setup"""
 
 if __name__ in "__main__":
     data = """#This is from mailtrap integration smtp
