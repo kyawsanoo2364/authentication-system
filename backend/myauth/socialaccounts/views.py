@@ -7,7 +7,7 @@ class GoogleApiView(GenericAPIView):
     serializer_class = GoogleAPISerializer
 
     def post(self, request):
-        serializer = self.serializer_class(data=request)
+        serializer = self.serializer_class(data=request.data)
         if serializer.is_valid(raise_exception=True):
             data = serializer.validated_data
             return Response(

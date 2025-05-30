@@ -107,7 +107,7 @@ class ResetPasswordRequestSerializer(serializers.Serializer):
             user = User.objects.get(email=email)
             uidb64 = urlsafe_base64_encode(smart_bytes(user.id))
             resetToken = PasswordResetTokenGenerator().make_token(user)
-            relative_path = f"{settings.FRONTEND_URL}/{uidb64}/{resetToken}/"
+            relative_path = f"{settings.FRONTEND_URL}/auth/{uidb64}/{resetToken}/"
             send_reset_link_to_user(user.email, link=relative_path)
             return {"email": user.email, "reset_link": relative_path}
         except:

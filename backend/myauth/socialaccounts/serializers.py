@@ -21,7 +21,7 @@ class GoogleAPISerializer(serializers.Serializer):
             )
         except:
             raise ValidationError("Invalid token")
-        if idinfo["iss"] not in "accounts.google.com":
+        if idinfo["iss"] not in ["accounts.google.com", "https://accounts.google.com"]:
             raise ValidationError("Invalid token url.")
         email = idinfo["email"]
         first_name = idinfo["given_name"]
@@ -34,8 +34,10 @@ class GoogleAPISerializer(serializers.Serializer):
                     first_name=first_name,
                     last_name=last_name,
                     password=settings.SOCIAL_PASSWORD,
+                    is_verified=True,
                 )
                 newUser.save()
+
                 tokens = newUser.token()
                 return {
                     "email": newUser.email,

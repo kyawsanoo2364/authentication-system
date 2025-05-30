@@ -8,12 +8,14 @@ from .serializers import (
 )
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 # Create your views here.
 class RegisterAPIView(GenericAPIView):
     serializer_class = RegisterSerializer
+    permission_classes = [AllowAny]
 
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
@@ -85,3 +87,19 @@ class SetNewPasswordAPIView(GenericAPIView):
                 {"message": "Reset Password successfully."}, status=status.HTTP_200_OK
             )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LogoutUserAPIView(GenericAPIView):
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request):
+        refresh_token = request.data["refresh"]
+        if not refresh_token:
+            return Response({"message": "Refresh token is required"}, status=400)
+        try:
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response({"message": "Logout Successfully."}, status=200)
+        except Exception as e:
+
+            return Response({"message": "Token is invalid"}, status=400)
