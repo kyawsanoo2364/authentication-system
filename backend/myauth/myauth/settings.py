@@ -25,7 +25,7 @@ load_dotenv()
 SECRET_KEY = "django-insecure-cm50oisrj%5k_7646(t26mhopuscelw$s0mjp--zp&la3aq$@t"
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["authentication-system-sgr8.onrender.com", "127.0.0.1", "localhost"]
 
 
 # Application definition
