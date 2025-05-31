@@ -13,7 +13,10 @@ DEBUG=true
 FRONTEND_URL=
 FROM_EMAIL= #your email address for send to user
 GOOGLE_CLIENT_ID= #google cloud api -> oauth_client_id
-SOCIAL_PASSWORD=DJFIJjadfqei2d4f7e1a #As you like"""
+SOCIAL_PASSWORD=DJFIJjadfqei2d4f7e1a #As you like
+#After building react file
+VITE_BACKEND_API_URL=http://127.0.0.1:8000/api/v1
+VITE_GOOGLE_CLIENT_ID="""
 
     with open(".env.local", "w") as f:
         f.write(data)
