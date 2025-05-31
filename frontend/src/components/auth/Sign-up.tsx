@@ -77,6 +77,7 @@ const LoginWithGoogle = async (token: string | undefined) => {
       }
     } catch (error) {
       console.log(error);
+      //@ts-ignore
       toast.error(error?.message);
     } finally {
       setIsLoading(false);

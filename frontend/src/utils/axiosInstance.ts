@@ -16,6 +16,7 @@ axiosInstance.interceptors.request.use(async(req) => {
     const decoded = jwtDecode(JSON.parse(token))
     const isExpired = dayjs.unix(decoded.exp as number).diff(dayjs()) < 1
     if(isExpired){
+      //@ts-ignore
       const res = await axios.post(`${import.meta.env.VITE_BACKEND_API_URL}/auth/token/refresh/`,{refresh:JSON.parse(refresh)})
       if(res.status === 200){
         const data = res.data
@@ -24,6 +25,7 @@ axiosInstance.interceptors.request.use(async(req) => {
         localStorage.setItem("access",JSON.stringify(data.access))
         return req
       } else {
+        //@ts-ignore
         const res = await axios.post(`${import.meta.env.VITE_BACKEND_API_URL}/auth/logout/`,{refresh:JSON.parse(refresh)})
         if(res.status == 200){
 

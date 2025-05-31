@@ -54,6 +54,7 @@ const NewPassword = ({ pageTitle }: { pageTitle?: string }) => {
       }
     } catch (error) {
       console.log(error);
+      //@ts-ignore
       toast.error(error.response.data.detail ||  error?.message);
     } finally {
       setIsLoading(false);

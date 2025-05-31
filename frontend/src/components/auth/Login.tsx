@@ -5,7 +5,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { useNavigate } from "react-router-dom";
 import { getUser } from "../../utils/user";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-import axios from "axios";
+
 
 const Login = ({ pageTitle }: { pageTitle?: string }) => {
   const navigate = useNavigate();
@@ -59,6 +59,7 @@ const Login = ({ pageTitle }: { pageTitle?: string }) => {
       }
     } catch (error) {
       console.log(error);
+      //@ts-ignore
       toast.error(error.response.data.detail || error?.message);
     } finally {
       setIsLoading(false);

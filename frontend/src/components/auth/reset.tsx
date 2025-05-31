@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import axiosInstance from "../../utils/axiosInstance";
-import { useNavigate } from "react-router-dom";
+
 
 const Reset = ({ pageTitle }: { pageTitle?: string }) => {
   useEffect(() => {
@@ -11,7 +11,7 @@ const Reset = ({ pageTitle }: { pageTitle?: string }) => {
   }, [pageTitle]);
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
+
 
   const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,6 +29,7 @@ const Reset = ({ pageTitle }: { pageTitle?: string }) => {
       }
     } catch (error) {
       console.log(error);
+      //@ts-ignore
       toast.error(error.response.data.non_field_errors[0] || error.message);
     } finally {
       setIsLoading(false);

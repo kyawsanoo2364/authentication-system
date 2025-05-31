@@ -29,6 +29,7 @@ const VerifyEmail = ({ pageTitle }: { pageTitle?: string }) => {
       }
     } catch (error) {
       console.log(error);
+      //@ts-ignore
       toast.error(error.response.data.non_field_errors[0] || error.message);
     } finally {
       setIsLoading(false);
